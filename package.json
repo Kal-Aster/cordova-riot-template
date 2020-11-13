@@ -1,0 +1,39 @@
+{
+    "name": "cordova-riot-template",
+    "displayName": "CordovaRiotTemplate",
+    "version": "1.0.0",
+    "description": "A project template for cordova using riot.js",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [
+        "ecosystem:cordova"
+    ],
+    "author": "Giuliano Collacchioni",
+    "license": "MIT",
+    "dependencies": {
+        "riot": "^5.0.0"
+    },
+    "devDependencies": {
+        "@riotjs/compiler": "^5.0.0",
+        "@rollup/plugin-commonjs": "^16.0.0",
+        "@rollup/plugin-node-resolve": "^10.0.0",
+        "@rollup/plugin-typescript": "^6.1.0",
+        "cordova-browser": "^6.0.0",
+        "cordova-plugin-whitelist": "^1.3.4",
+        "postcss-url": "^10.1.0",
+        "rollup": "^2.33.1",
+        "rollup-plugin-postcss": "^3.1.8",
+        "rollup-plugin-riot": "^4.0.2",
+        "typescript": "^4.0.5"
+    },
+    "cordova": {
+        "plugins": {
+            "cordova-plugin-whitelist": {}
+        },
+        "platforms": [
+            "browser"
+        ]
+    }
+}
