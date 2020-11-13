@@ -5,10 +5,12 @@ const nodeResolve = require("@rollup/plugin-node-resolve").default;
 const postcss = require("rollup-plugin-postcss");
 const postcssurl = require("postcss-url");
 const { execSync } = require("child_process");
+const fs = require("fs");
+const path = require("path");
 
-const cordovaPlatforms = [
-    "browser"
-]
+const cordovaPlatforms = fs.existsSync("platforms") ? fs.readdirSync("platforms").filter(f => {
+    return fs.lstatSync(path.join("platforms", f)).isDirectory();
+}) : [];
 
 export default [
     {
@@ -32,7 +34,11 @@ export default [
                 {
                     name: "cordova-build",
                     writeBundle() {
+                        if (cordovaPlatforms.length <= 0) {
+                            return;
+                        }
                         cordovaPlatforms.forEach(pltf => {
+                            console.log("> cordova build " + pltf);
                             execSync("cordova build " + pltf);
                         });
                     }
