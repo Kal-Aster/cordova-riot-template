@@ -10,7 +10,8 @@
 - Add whatever platforms you like to cordova
 
    ```cordova platform add <platform>```
-- Start coding in folder `src`
+### Usage
+- Code in folder `src`
 - Whenever ready run rollup
 
     ```npx rollup -c```
