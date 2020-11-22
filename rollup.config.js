@@ -7,6 +7,7 @@ const postcssurl = require("postcss-url");
 const { execSync } = require("child_process");
 const fs = require("fs");
 const path = require("path");
+const rimraf = require("rimraf");
 
 const cordovaPlatforms = fs.existsSync("platforms") ? fs.readdirSync("platforms").filter(f => {
     return fs.lstatSync(path.join("platforms", f)).isDirectory();
@@ -27,12 +28,18 @@ export default [
             typescript(),
             riot()
         ],
+        preserveEntrySignatures: "strict",
         output: {
-            file: "www/scripts/index.js",
-            format: "umd",
+            dir: "www/scripts",
+            format: "amd",
             plugins: [
                 {
                     name: "cordova-build",
+                    generateBundle(options) {
+                        if (fs.existsSync(options.dir)) {
+                            rimraf.sync(options.dir);
+                        }
+                    },
                     writeBundle() {
                         if (cordovaPlatforms.length <= 0) {
                             return;
